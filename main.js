@@ -22,6 +22,7 @@ const creatHtmlElement = (arr) => {
 }
 
 
+
 const allIssuesApi = async () => {
 
   const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
@@ -39,7 +40,7 @@ const displayAllIssues = (card) => {
     const divElement = document.createElement("div")
     divElement.innerHTML = `
     
-      <div
+      <div onclick="modalDataShow(${element.id})"
         class="p-4 bg-white h-full shadow-2xl rounded-xl border-t-2 ${element.priority === "low" ? " border-purple-500" : "border-green-500"} cursor-pointer hover:-translate-y-2 duration-300 space-y-2">
 
         <div class="flex items-center justify-between ব-">
@@ -62,7 +63,7 @@ const displayAllIssues = (card) => {
 
 
             <hr class="mt-4">
-                    <div>
+            <div>
              <h5 class="text-sm font-bold text-neutral-400"># by ${element.author}</h5>
            <p class="text-sm font-bold text-neutral-400"> ${new Date(element.createdAt).toLocaleDateString()}</p>
         </div>
@@ -75,6 +76,74 @@ const displayAllIssues = (card) => {
 
   });
 
+}
+
+const modalDataShow = async (id) => {
+  const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`
+
+  const res = await fetch(url)
+  const data = await res.json()
+  modalDisplayData(data.data)
+
+}
+
+const modalDisplayData = (card) => {
+
+  const modal = document.getElementById("my_modal_5")
+  const modalContainer = document.getElementById('modalContainer');
+
+  modalContainer.innerHTML = `
+  
+    <div class="space-y-3">
+
+      <h3 class="text-xl font-bold">${card.title}</h3>
+
+      <div class="flex items-center gap-2">
+        <h4 class="px-4 py-1 rounded-full ${card.status === "open" ? "bg-green-500 text-white" : "bg-red-400 text-white"}">
+          ${card.status}
+        </h4>
+
+        <span class=" text-neutral-500 font-bold">• Opened by ${card.author}</span>
+        <span class=" font-semibold text-neutral-600">• ${new Date(card.updatedAt).toLocaleDateString()}</span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        ${creatHtmlElement(card.labels)}
+      </div>
+
+      <p>${card.description}</p>
+
+      <div class="bg-gray-200 flex items-center gap-20 p-4 rounded-lg">
+
+        <div>
+          <h5 class="font-bold">Assignee:</h5>
+          <h5 class="text-2xl font-bold">${card.author}</h5>
+        </div>
+
+        <div>
+          <h5 class="font-bold mb-1">Priority</h5>
+          <div class="py-1 px-4 text-xl rounded-full 
+          ${card.priority === "high"
+      ? "bg-red-300 border-2 border-red-600 text-red-700"
+      : card.priority === "medium"
+        ? "border-2 border-yellow-500 bg-yellow-200 text-yellow-500"
+        : "bg-gray-200 border-2 border-black"}">
+            ${card.priority}
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-action">
+        <form method="dialog">
+          <button class="btn btn-primary">Close</button>
+        </form>
+      </div>
+
+    </div>
+  `
+
+  modal.showModal()
 }
 
 allIssuesApi()
