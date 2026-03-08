@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- link font awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- link tailwind css and daisyui -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+
+  <!-- link custom css -->
+  <link rel="stylesheet" href="tailwind.config.css">
+
+  <link rel="shortcut icon" href="./assets/github-logo.png" type="image/x-icon">
+  <title>Login Page</title>
+</head>
+
+<body class="bg-base-200 container mx-auto w-1/2 h-screen">
+
+  <section>
+    <div class="flex flex-col items-center justify-center pt-20 space-y-2">
+      <img src="./assets/github-logo.png" alt="">
+      <h2 class="text-3xl font-bold">GitHub Issues Tracker</h2>
+      <p class="text-xl text-gray-500">Sign in to manage your issues</p>
+    </div>
+
+    <div id="login-form" class="flex flex-col items-center justify-center pt-10 space-y-2">
+      <fieldset class="fieldset bg-base-200   rounded-box w-xs  p-4">
+
+
+        <label class="label text-xl font-bold">Username</label>
+        <input id="username-input" type="email" class="input p-4 rounded-2xl" placeholder="Enter your username" />
+        <p class="text-sm text-indigo-600 font-bold">Default Username: admin</p>
+
+        <label class="label text-xl font-bold">Password</label>
+        <input id="password-input" type="password" class="input p-4 rounded-2xl" placeholder="Enter your password" />
+        <p class="text-indigo-600 font-bold text-sm">Default Password: admin123</p>
+
+        <button id="sign-in-button" class="btn btn-primary mt-4">Sign in</button>
+      </fieldset>
+    </div>
+
+    <div class="divider">OR</div>
+
+    <p class="text-center my-2 text-xl font-semibold text-neutral-500">Demo Credentials</p>
+    <div class="flex items-center w-11/12 mx-auto justify-center p-4   bg-gray-200 rounded-xl">
+      <div>
+
+        <h2 class="text-2xl font-bold">Username: <span class="text-xl font-bold text-neutral-600">admin</span></h2>
+        <h2 class="text-2xl font-bold">Password: <span class="text-xl font-bold text-neutral-600">admin123</span></h2>
+
+      </div>
+    </div>
+
+
+  </section>
+
+
+  <script src="log.js"></script>
+
+</body>
+
+</html>
