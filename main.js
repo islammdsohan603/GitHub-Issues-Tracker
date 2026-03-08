@@ -222,6 +222,25 @@ document.getElementById("closedBtn").addEventListener("click", () => {
   closedAllIssues();
 })
 
+
+document.getElementById("btnSearch").addEventListener("click", () => {
+  const searchIpnut = document.getElementById("searchIpnut");
+  const searchValue = searchIpnut.value.trim().toLowerCase();
+
+  lodingSpinar(true)
+
+  fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`)
+
+    .then(res => res.json())
+    .then(data => {
+      displayAllIssues(data.data)
+      lodingSpinar(false)
+    })
+
+
+})
+
+
 allIssuesApi()
 
 setActiveBtn("allBtn")

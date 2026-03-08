@@ -22,31 +22,43 @@
   <title>Login Page</title>
 </head>
 
-<body class="bg-base-200 container mx-auto w-1/2 h-screen">
+<body class="bg-base-300 min-h-screen flex items-center justify-center">
 
-  <section>
-    <div class="flex flex-col items-center justify-center pt-20 space-y-2">
-      <img src="./assets/github-logo.png" alt="">
-      <h2 class="text-3xl font-bold">GitHub Issues Tracker</h2>
-      <p class="text-xl text-gray-500">Sign in to manage your issues</p>
+  <section class="w-full bg-white h-screen max-w-md px-4">
+
+    <div class="space-y-8">
+
+      <!-- Header -->
+      <div class="flex flex-col items-center justify-center space-y-2 text-center">
+        <img src="./assets/github-logo.png" alt="GitHub Logo" class="w-24 sm:w-32 md:w-30 pt-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold">GitHub Issues Tracker</h2>
+        <p class="text-base sm:text-lg md:text-xl text-gray-500">Sign in to manage your issues</p>
+      </div>
+
+      <!-- Login Form -->
+      <div id="login-form">
+        <fieldset class="  rounded-2xl p-6 sm:p-8   space-y-4">
+
+          <div class="space-y-2">
+            <label class="text-lg font-bold">Username</label>
+            <input id="username-input" type="email" class="input input-bordered w-full p-3 rounded-xl"
+              placeholder="Enter your username" />
+          </div>
+
+          <div class="space-y-2">
+            <label class="text-lg font-bold">Password</label>
+            <input id="password-input" type="password" class="input input-bordered w-full p-3 rounded-xl"
+              placeholder="Enter your password" />
+          </div>
+
+          <button id="sign-in-button" class="btn btn-primary w-full py-3 text-lg rounded-xl">
+            Sign in
+          </button>
+
+        </fieldset>
+      </div>
+
     </div>
-
-    <div id="login-form" class="flex flex-col items-center justify-center pt-10 space-y-2">
-      <fieldset class="fieldset bg-base-200   rounded-box w-xs  p-4">
-
-
-        <label class="label text-xl font-bold">Username</label>
-        <input id="username-input" type="email" class="input p-4 rounded-2xl" placeholder="Enter your username" />
-        <p class="text-sm text-indigo-600 font-bold">Default Username: admin</p>
-
-        <label class="label text-xl font-bold">Password</label>
-        <input id="password-input" type="password" class="input p-4 rounded-2xl" placeholder="Enter your password" />
-        <p class="text-indigo-600 font-bold text-sm">Default Password: admin123</p>
-
-        <button id="sign-in-button" class="btn btn-primary mt-4">Sign in</button>
-      </fieldset>
-    </div>
-
     <div class="divider">OR</div>
 
     <p class="text-center my-2 text-xl font-semibold text-neutral-500">Demo Credentials</p>
@@ -57,14 +69,9 @@
         <h2 class="text-2xl font-bold">Password: <span class="text-xl font-bold text-neutral-600">admin123</span></h2>
 
       </div>
-    </div>
-
-
   </section>
 
-
   <script src="log.js"></script>
-
 </body>
 
 </html>
