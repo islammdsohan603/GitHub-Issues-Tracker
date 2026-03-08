@@ -35,10 +35,20 @@ const creatHtmlElement = (arr) => {
   }).join("")
 }
 
-
+const lodingSpinar = (status) => {
+  const loding = document.getElementById("loding")
+  const cardSection = document.getElementById("cardSection");
+  if (status === true) {
+    loding.classList.remove("hidden");
+    cardSection.classList.add("hidden")
+  } else {
+    loding.classList.add("hidden");
+    cardSection.classList.remove("hidden")
+  }
+}
 
 const allIssuesApi = async () => {
-
+  lodingSpinar(true)
   const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
   const dataShow = await res.json()
   displayAllIssues(dataShow.data)
@@ -47,6 +57,7 @@ const allIssuesApi = async () => {
 }
 
 const openAllIssues = () => {
+  lodingSpinar(true)
   const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
   fetch(url)
     .then(res => res.json())
@@ -58,6 +69,7 @@ const openAllIssues = () => {
 }
 
 const closedAllIssues = () => {
+  lodingSpinar(true)
   const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
   fetch(url)
     .then(res => res.json())
@@ -71,6 +83,11 @@ const closedAllIssues = () => {
 const displayAllIssues = (card) => {
   const cardSection = document.getElementById("cardSection");
   cardSection.innerHTML = ""
+
+  const countNumber = document.getElementById("countNumber");
+
+  countNumber.innerHTML = card.length
+
 
   card.forEach(element => {
     const divElement = document.createElement("div")
@@ -108,7 +125,9 @@ const displayAllIssues = (card) => {
 </div >
   `
 
-    cardSection.appendChild(divElement)
+
+    cardSection.appendChild(divElement);
+    lodingSpinar(false)
 
   });
 
