@@ -46,6 +46,28 @@ const allIssuesApi = async () => {
 
 }
 
+const openAllIssues = () => {
+  const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      const openData = data.data.filter(load => load.status === "open");
+      displayAllIssues(openData);
+    })
+
+}
+
+const closedAllIssues = () => {
+  const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      const closedData = data.data.filter(load => load.status === "closed");
+      displayAllIssues(closedData);
+    })
+
+}
+
 const displayAllIssues = (card) => {
   const cardSection = document.getElementById("cardSection");
   cardSection.innerHTML = ""
@@ -91,6 +113,8 @@ const displayAllIssues = (card) => {
   });
 
 }
+
+
 
 const modalDataShow = async (id) => {
   const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`
@@ -171,12 +195,12 @@ document.getElementById("allBtn").addEventListener('click', () => {
 
 document.getElementById("openBtn").addEventListener("click", () => {
   setActiveBtn("openBtn");
-  allIssuesApi();
+  openAllIssues();
 })
 
 document.getElementById("closedBtn").addEventListener("click", () => {
   setActiveBtn("closedBtn");
-  allIssuesApi();
+  closedAllIssues();
 })
 
 allIssuesApi()
