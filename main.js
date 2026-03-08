@@ -1,3 +1,17 @@
+const setActiveBtn = (active) => {
+  const allBtn = ["allBtn", "openBtn", "closedBtn"];
+  allBtn.forEach(btn => {
+    const btns = document.getElementById(btn);
+    if (btn === active) {
+      btns.classList.add("btn-primary")
+      btns.classList.remove("btn-outline")
+    } else {
+      btns.classList.remove("btn-primary")
+      btns.classList.add("btn-outline")
+    }
+  })
+}
+
 const creatHtmlElement = (arr) => {
   return arr.map(ele => {
     return `
@@ -83,6 +97,9 @@ const modalDataShow = async (id) => {
 
   const res = await fetch(url)
   const data = await res.json()
+
+
+
   modalDisplayData(data.data)
 
 }
@@ -146,4 +163,22 @@ const modalDisplayData = (card) => {
   modal.showModal()
 }
 
+document.getElementById("allBtn").addEventListener('click', () => {
+  setActiveBtn("allBtn")
+  allIssuesApi();
+});
+
+
+document.getElementById("openBtn").addEventListener("click", () => {
+  setActiveBtn("openBtn");
+  allIssuesApi();
+})
+
+document.getElementById("closedBtn").addEventListener("click", () => {
+  setActiveBtn("closedBtn");
+  allIssuesApi();
+})
+
 allIssuesApi()
+
+setActiveBtn("allBtn")
